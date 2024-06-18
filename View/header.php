@@ -29,7 +29,7 @@
                         >
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo $url_base;?>/view/productos/index.php">Productos</a>
+                        <a class="nav-link" href="<?php echo $url_base;?>/Controller/controller_mostrar_producto.php">Productos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo $url_base;?>/view/usuarios/index.php">Usuarios</a>

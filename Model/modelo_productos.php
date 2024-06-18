@@ -1,6 +1,8 @@
-<?php 
+<?php
+include_once("guardar.php");
 
-class productos{
+class productos
+{
 
     protected $id_producto;
     protected $nombre_producto;
@@ -9,55 +11,98 @@ class productos{
     protected $descripcion_producto;
 
 
-    public function __construct($id_producto, $nombre_producto, $precio_producto, $stock_producto, $descripcion_producto){
-        $this->id_producto = $id_producto;
-        $this->nombre_producto = $nombre_producto;
-        $this->precio_producto = $precio_producto;
-        $this->stock_producto = $stock_producto;
-        $this->descripcion_producto = $descripcion_producto;
-    }
-
-    public function getId_producto(){
+    public function getId_producto()
+    {
         return $this->id_producto;
     }
 
-    public function getNombre_producto(){
+    public function getNombre_producto()
+    {
         return $this->nombre_producto;
     }
 
-    public function getPrecio_producto(){
+    public function getPrecio_producto()
+    {
         return $this->precio_producto;
     }
 
-    public function getStock_producto(){
+    public function getStock_producto()
+    {
         return $this->stock_producto;
     }
 
-    public function getDescripcion_producto(){
+    public function getDescripcion_producto()
+    {
         return $this->descripcion_producto;
     }
 
-    public function setId_producto($id_producto){
+    public function setId_producto($id_producto)
+    {
         $this->id_producto = $id_producto;
     }
 
-    public function setNombre_producto($nombre_producto){
+    public function setNombre_producto($nombre_producto)
+    {
         $this->nombre_producto = $nombre_producto;
     }
 
-    public function setPrecio_producto($precio_producto){
+    public function setPrecio_producto($precio_producto)
+    {
         $this->precio_producto = $precio_producto;
     }
 
-    public function setStock_producto($stock_producto){
+    public function setStock_producto($stock_producto)
+    {
         $this->stock_producto = $stock_producto;
     }
 
-    public function setDescripcion_producto($descripcion_producto){
+    public function setDescripcion_producto($descripcion_producto)
+    {
+        $this->descripcion_producto = $descripcion_producto;
+    }
+
+    public function crear_producto($nombre_producto, $precio_producto, $stock_producto, $descripcion_producto)
+    {
+        $this->id_producto = guardar($nombre_producto, $precio_producto, $stock_producto, $descripcion_producto);
+        $this->nombre_producto = $nombre_producto;
+        $this->precio_producto = $precio_producto;
+        $this->stock_producto = $stock_producto;
         $this->descripcion_producto = $descripcion_producto;
     }
 
 
-    
+    public function mostar_productos()
+    {
+        global $conexion;
+
+        $sentencia = $conexion->prepare("SELECT * FROM tbl_productos");
+        $sentencia->execute();
+        $productos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        return $productos;
+    }
+
+    public function buscar_producto($id_producto)
+    {
+        global $conexion;
+
+        $sentencia = $conexion->prepare("SELECT * FROM tbl_productos WHERE id_producto = ?");
+        $sentencia->execute([$id_producto]);
+        $producto = $sentencia->fetch(PDO::FETCH_ASSOC);
+        return $producto;
+    }
+
+    public function actualizar_producto(){
+        global $conexion;
+
+        $sentencia = $conexion->prepare("UPDATE tbl_productos SET nombre_producto = :nombre_producto,precio_producto = :precio_producto,stock_producto = :stock_producto,descripcion_producto = :descripcion_producto WHERE id_usuario = :id_usuario");
+        $sentencia->bindParam(":nombre_usuario",$nombre_usuario);
+        $sentencia->bindParam(":id_usuario",$id_usuario);
+        $sentencia->bindParam(":correo_usuario",$correo_usuario);
+        $sentencia->execute();
+        
+
+
+    }
+
 
 }
