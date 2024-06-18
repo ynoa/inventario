@@ -91,18 +91,17 @@ class productos
         return $producto;
     }
 
-    public function actualizar_producto(){
+    public function actualizar_producto($id_producto,$nombre_producto,$precio_producto,$stock_producto,$descripcion_producto)
+    {
         global $conexion;
 
-        $sentencia = $conexion->prepare("UPDATE tbl_productos SET nombre_producto = :nombre_producto,precio_producto = :precio_producto,stock_producto = :stock_producto,descripcion_producto = :descripcion_producto WHERE id_usuario = :id_usuario");
-        $sentencia->bindParam(":nombre_usuario",$nombre_usuario);
-        $sentencia->bindParam(":id_usuario",$id_usuario);
-        $sentencia->bindParam(":correo_usuario",$correo_usuario);
+        $sentencia = $conexion->prepare("UPDATE tbl_productos SET nombre_producto = :nombre_producto,precio_producto = :precio_producto,stock_producto = :stock_producto,descripcion_producto = :descripcion_producto WHERE id_producto = :id_producto");
+       
+        $sentencia->bindParam(":id_producto", $id_producto);
+        $sentencia->bindParam(":nombre_producto", $nombre_producto);
+        $sentencia->bindParam(":precio_producto", $precio_producto);
+        $sentencia->bindParam(":stock_producto", $stock_producto);
+        $sentencia->bindParam(":descripcion_producto", $descripcion_producto);
         $sentencia->execute();
-        
-
-
     }
-
-
 }

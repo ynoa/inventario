@@ -29,7 +29,7 @@ include("header.php"); ?>
                             <td><?php echo $producto['precio_producto']; ?></td>
                             <td><?php echo $producto['stock_producto']; ?></td>
                             <td><?php echo $producto['descripcion_producto']; ?></td>
-                            <td><a name="" id="" class="btn btn-info" href="#" role="button">Editar</a>
+                            <td><a name="" id="" class="btn btn-info" href="../Controller/controller_editar_producto.php?id_producto=<?php echo $producto['id_producto']; ?>" role="button">Editar</a>
 
                                 <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
 
