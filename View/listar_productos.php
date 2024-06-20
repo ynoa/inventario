@@ -3,8 +3,17 @@
 include("header.php"); ?>
 
 <div class="card">
-    <div class="card-header"><a name="" id="" class="btn btn-primary" href="../Controller/controller_crear_producto.php" role="button">Crear Producto</a>
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <a name="" id="" class="btn btn-primary" href="../Controller/controller_crear_producto.php" role="button">Crear Producto</a>
+        <form class="d-flex" role="search" action="../Controller/controller_buscar_producto.php" method="POST">
+
+            <input class="form-control me-2" type="search" id="nombre_producto" name="nombre_producto" placeholder="Escribe el producto" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+
+        </form>
     </div>
+
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table">
@@ -19,7 +28,7 @@ include("header.php"); ?>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($productos as $key => $producto) { ?>
+                    <?php foreach ($productos as $producto) { ?>
                         <tr class="">
 
 
@@ -31,7 +40,7 @@ include("header.php"); ?>
                             <td><?php echo $producto['descripcion_producto']; ?></td>
                             <td><a name="" id="" class="btn btn-info" href="../Controller/controller_editar_producto.php?id_producto=<?php echo $producto['id_producto']; ?>" role="button">Editar</a>
 
-                                <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                                <a name="" id="" class="btn btn-danger" href="../Controller/controller_eliminar_producto.php?id_producto=<?php echo $producto['id_producto']; ?>" role="button">Eliminar</a>
 
                             </td>
 

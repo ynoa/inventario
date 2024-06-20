@@ -92,7 +92,7 @@
         name=""
         id=""
         class="btn btn-danger"
-        href="#"
+        href="../Controller/controller_mostrar_producto.php"
         role="button"
         >Cancelar</a
     >

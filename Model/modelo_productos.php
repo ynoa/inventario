@@ -91,6 +91,26 @@ class productos
         return $producto;
     }
 
+    public function buscar_producto_nombre($nombre_producto)
+    {
+        global $conexion;
+
+        $sentencia = $conexion->prepare("SELECT * FROM tbl_productos WHERE nombre_producto LIKE ?");
+        $nombre_producto = "%$nombre_producto%";
+        $sentencia->execute([$nombre_producto]);
+        $producto = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        return $producto;
+    }
+
+    public function eliminar_producto($id_producto){
+        global $conexion;
+
+        $sentencia = $conexion->prepare("DELETE FROM tbl_productos WHERE id_producto =:id_producto");
+        $sentencia->bindParam(":id_producto",$id_producto);
+        $sentencia->execute();
+
+    }
+
     public function actualizar_producto($id_producto,$nombre_producto,$precio_producto,$stock_producto,$descripcion_producto)
     {
         global $conexion;
